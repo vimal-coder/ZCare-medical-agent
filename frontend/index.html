@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZCare Medical Report Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i data-lucide="clipboard-plus" class="logo-icon"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>ZCare AI</h1>
+                    <p>Medical Report Analyzer Agent</p>
+                </div>
+            </div>
+            
+            <button class="new-chat" onclick="clearChat()">
+                <i data-lucide="plus"></i> New Chat
+            </button>
+            
+            <nav>
+                <ul>
+                    <li class="active" id="nav-chat" onclick="switchTab('chat')">
+                        <i data-lucide="message-square"></i> Chat
+                    </li>
+                    <li id="nav-reports" onclick="switchTab('reports')">
+                        <i data-lucide="file-text"></i> Reports
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-area">
+            <header class="top-bar">
+                <button class="clear-chat" onclick="clearChat()">
+                    <i data-lucide="trash-2"></i> Clear Chat
+                </button>
+            </header>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="upload-section-container" id="uploadContainer">
+                    <div class="upload-box" id="dropZone">
+                        <i data-lucide="cloud-upload" class="upload-icon"></i>
+                        <h2>Upload Medical Report or Image</h2>
+                        <p>JPG, PNG, PDF up to 10MB (Max 5 files)</p>
+                        <input type="file" id="fileInput" accept=".pdf, .png, .jpg, .jpeg" class="hidden-input" multiple>
+                        <label for="fileInput" class="upload-btn">
+                            <i data-lucide="upload"></i> Upload File
+                        </label>
+                    </div>
+
+                    <div id="filePreview" class="file-preview hidden">
+                        <div class="file-info">
+                            <div class="file-icon pdf-icon">
+                                <span class="pdf-text">PDF</span>
+                            </div>
+                            <div class="file-details">
+                                <span class="file-name" id="fileName">Report</span>
+                                <span class="file-size" id="fileSize">0 MB</span>
+                            </div>
+                        </div>
+                        <i data-lucide="check-circle-2" class="success-icon"></i>
+                    </div>
+                </div>
+
+                <div id="messages" class="messages">
+                    <!-- Messages will be appended here -->
+                </div>
+            </div>
+
+            <div class="reports-container hidden" id="reportsContainer">
+                <div class="reports-header">
+                    <h2>Analysis Report</h2>
+                    <p>Detailed breakdown of your uploaded medical document</p>
+                </div>
+                <div id="reportsContent" class="reports-content">
+                    <div class="no-report">
+                        <i data-lucide="file-question" class="empty-icon"></i>
+                        <p>No report uploaded yet. Please upload a report in the Chat tab.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-container hidden" id="historyContainer">
+                <div class="reports-header">
+                    <h2>Chat History</h2>
+                    <p>Your previous conversations and analyses</p>
+                </div>
+                <div id="historyContent" class="reports-content history-content">
+                    <div class="no-report">
+                        <i data-lucide="history" class="empty-icon"></i>
+                        <p>No chat history available.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area-wrapper" id="inputWrapper">
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about your report..." onkeypress="handleKeyPress(event)">
+                    <button id="sendBtn" onclick="sendMessage()">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+                <div class="disclaimer">
+                    Disclaimer: This AI does not replace professional medical advice. Please consult a doctor for diagnosis and treatment.
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
