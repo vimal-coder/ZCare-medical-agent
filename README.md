@@ -8,13 +8,13 @@ ZCare Medical Report Analyzer is a web-based application and API that processes 
 - **AI Agent Workflow**: Utilizes LangGraph and LangChain to create an intelligent medical analysis agent.
 - **FastAPI Backend**: Robust and fast RESTful API built with FastAPI.
 - **Interactive UI**: A simple, easy-to-use frontend built with vanilla HTML, CSS, and JavaScript, served directly from the backend.
-- **Groq Integration**: Leverages fast inference via Langchain Groq.
+- **Gemini Integration**: Leverages fast inference via Langchain Google GenAI.
 - **PDF Processing**: Extracts text and information from PDFs using PyMuPDF.
 
 ## Tech Stack
 
 - **Backend**: Python 3.12+, FastAPI, Uvicorn
-- **AI / LLM**: LangChain, LangGraph, Langchain Groq
+- **AI / LLM**: LangChain, LangGraph, Langchain Google GenAI
 - **Document Processing**: PyMuPDF (`pymupdf`)
 - **Frontend**: HTML, CSS, JavaScript
 - **Package Management**: `uv` or `pip`
@@ -42,29 +42,46 @@ Ensure you are in the project directory.
 
 ### 2. Set up the Environment
 
-Create a `.env` file in the root directory and add the necessary API keys (e.g., Groq):
+Create a `.env` file in the root directory and add the necessary API keys (e.g., Google/Gemini):
 
 ```env
-GROQ_API_KEY=your_groq_api_key_here
+GOOGLE_API_KEY=your_google_api_key_here
 ```
 
 *(Check `config.ini` or `.env.example` if available for more configuration options).*
 
 ### 3. Install Dependencies
 
-You can use `uv` (recommended) or `pip` to install dependencies.
+We recommend using `uv` to manage your virtual environment and install packages.
 
-**Using `uv`:**
+**1. Create a virtual environment with `uv`:**
 ```bash
-uv sync
+uv venv
 ```
-*Or, if you don't have uv installed, install it via pip first (`pip install uv`).*
 
-**Using `pip`:**
+**2. Activate the virtual environment:**
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+# On Windows:
+.venv\Scripts\activate
+
+# On macOS and Linux:
+source .venv/bin/activate
+```
+
+**3. Install all project dependencies:**
+```bash
+# If using pyproject.toml / uv.lock (Recommended)
+uv sync
+
+# Or, to install directly from requirements.txt
+uv add -r requirements.txt
+```
+
+*(If you don't have uv installed, you can install it via pip: `pip install uv`)*
+
+**Install/Add a new package using `uv`:**
+```bash
+uv add <package_name>
 ```
 
 ### 4. Run the Application

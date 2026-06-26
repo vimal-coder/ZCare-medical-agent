@@ -4,7 +4,7 @@ python-multipart
 PyMuPDF
 langchain
 langgraph
-langchain-groq
+langchain-google-genai
 python-dotenv
 pydantic
 langchain-community

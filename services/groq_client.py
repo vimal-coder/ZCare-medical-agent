@@ -3,9 +3,10 @@ import base64
 import json
 import re
 import logging
-from langchain_groq import ChatGroq
+
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from core.config_parser import GROQ_API_KEY, VISION_MODEL_ID, config
+from langchain_groq import ChatGroq
 from agent.prompts import (
     MEDICAL_ANALYSIS_SYSTEM_PROMPT,
     MEDICAL_ANALYSIS_HUMAN_PROMPT,
@@ -14,10 +15,10 @@ from agent.prompts import (
 
 logger = logging.getLogger(__name__)
 
-# 1. Initialize the LangChain Groq Client
+# 1. Initialize the LangChain Gemini Client
 llm = ChatGroq(
     api_key=GROQ_API_KEY,
-    model_name=VISION_MODEL_ID,
+    model=VISION_MODEL_ID,
     temperature=float(config['MODEL']['temperature'])
 )
 
@@ -57,7 +58,7 @@ def _extract_json(text: str) -> dict:
 def analyze_medical_images(image_list: list[dict]) -> dict:
     """
     Accepts a list of in-memory image dicts [{"bytes": <raw_bytes>, "mime": "image/png"}, ...]
-    Sends them to the Groq Vision LLM and returns structured JSON.
+    Sends them to the Gemini Vision LLM and returns structured JSON.
     No file I/O is performed.
     """
     # 2. Add our strict instructions from agent/prompts.py
