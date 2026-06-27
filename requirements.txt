@@ -10,3 +10,4 @@ pydantic
 langchain-community
 jinja2
 dotenv
+langchain-groq
